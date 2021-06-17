@@ -18,7 +18,7 @@ class CreatePlacesTable extends Migration
             $table->string('file')->nullable();
             $table->string('slug');
             $table->string('location')->nullable();
-
+            $table->foreignId('user_id')->nullable();
             $table->unsignedBigInteger('posted_by');
             $table->index('posted_by');
 

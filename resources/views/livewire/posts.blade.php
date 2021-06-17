@@ -8,6 +8,7 @@
 
 
 <div>
+    
     @if(!$posts->count())
     <p>Anasayfada Görüntülenecek Bir Şey Yok.</p>
     @else

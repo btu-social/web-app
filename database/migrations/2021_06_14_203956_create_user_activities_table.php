@@ -17,8 +17,7 @@ class CreateUserActivitiesTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('event_id');
-            $table->integer('response');
-            $table->integer('status')->default(0);
+            $table->integer('status')->default(0)->nullable();
             $table->timestamps();
         });
     }
