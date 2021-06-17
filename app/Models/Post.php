@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+    
+
+
 class Post extends Model
 {
     use HasFactory;
@@ -15,14 +18,8 @@ class Post extends Model
 
 
 
-    protected static function booted()
-    {
-        // We will automatically add the user to the post when it's saved.
-        static::creating(function ($user) {
-            if (auth()->user()) {
-                $user->user_id = auth()->id();
-            }
-        });
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 
@@ -32,15 +29,13 @@ class Post extends Model
         'likes',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    
 
     public function getUser()
     {
         return $this->hasOne('App\Models\User', 'id','user_id');
     }
+    
 
     public function comments()
     {
@@ -78,6 +73,11 @@ public function removeLike(): bool
 
     return false;
 }
+
+
+
+
+
 
     
 

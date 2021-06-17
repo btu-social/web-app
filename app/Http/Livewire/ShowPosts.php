@@ -2,14 +2,11 @@
 
 namespace App\Http\Livewire;
 
-
-
 use Livewire\Component;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Actions;
 use App\Models\Comment;
-use App\Models\Place;
 use Illuminate\Notifications\Action;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\Paginator;
@@ -18,9 +15,9 @@ use Illuminate\Support\Facades\Validator;
 use Livewire\WithFileUploads;
 use phpDocumentor\Reflection\Types\Null_;
 
-
-class Places extends Component
+class ShowPosts extends Component
 {
+
     use WithPagination;
     use WithFileUploads;
     
@@ -31,8 +28,8 @@ class Places extends Component
     public $file;
     public $user;
     
-    public $place;
-    public $place_id;
+    
+    public $post_id;
     public $content;
     public $user_id;
     public $title;
@@ -50,15 +47,6 @@ class Places extends Component
         
     ];
 
-    
-    
-    
-
-    // public function paginationView()
-    // {
-    //     return 'bootstrap';
-    // }
-
     public $search;
 
     public function updatingSearch()
@@ -67,15 +55,17 @@ class Places extends Component
     }
 
 
+
+    
     public function render()
     {
-        $places;
-        // $search = '%' . $this->search . '%';
-        return view('livewire.places',[
-            'places' => Place::paginate(50),
-            'users' => User::where('name','like','%%')->orderBy('name','asc')->paginate(1)
-        ]);
+        $posts;
         
+        return view('livewire.show-posts',[
+            'posts' => Post::paginate(50),
+            'users' => User::where('name','like','%%')->orderBy('name','asc')->paginate(1),
+            
+        ]);
     }
 
     public function setPage($url)
@@ -85,6 +75,16 @@ class Places extends Component
             return $this->currentPage;
         });
 
+    }
+
+    public function previousPage()
+    {
+        $this->page = $this->page-1;
+    }
+
+    public function nextPage()
+    {
+        $this->page = $this->page+1;
     }
 
 }

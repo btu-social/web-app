@@ -35,6 +35,14 @@ Route::put('post/{post}', [App\Http\Controllers\PostController::class, 'update']
 Route::delete('post/{post}', [App\Http\Controllers\PostController::class, 'destroy']);
 
 
+
+
+
+
+
+
+
+
 Route::get('/event', [App\Http\Controllers\EventController::class, 'index'])->name('event');
 Route::get('event/create', [App\Http\Controllers\EventController::class, 'create']);
 Route::post('event', [App\Http\Controllers\EventController::class, 'store']);
@@ -77,12 +85,6 @@ Route::post('/comment/store', [App\Http\Controllers\CommentPlaceController::clas
 Route::post('/reply/store', [App\Http\Controllers\CommentPlaceController::class, 'replyStore'])->name('replyplace.add');
 
 
-
-
-
-
-
-
 Route::get('/email/verify',function(){
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
@@ -108,7 +110,8 @@ Route::post('/addFriends', [App\Http\Controllers\FriendController::class, 'addFr
 Route::post('/deletefriendship', [App\Http\Controllers\FriendController::class, 'deletefriendship']);
 Route::post('/removeFriends', [App\Http\Controllers\FriendController::class, 'removeFriend']);
 
-Route::get('profile/{user:name}', [App\Http\Controllers\ProfileController::class,'index'])->name('profiles.show');
+Route::get('profile/{user:id}', [App\Http\Controllers\ProfileController::class,'show'])->name('profiles.show');
+Route::get('/profile/post/{user:id}', [App\Http\Controllers\ProfileController::class, 'index'])->name('profiles.index');
 
 
 Route::get('/admin/my', function () {

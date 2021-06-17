@@ -69,6 +69,8 @@
                     </form>
 
 
+
+
            
 
 
@@ -97,12 +99,46 @@
                 </form>
                </div>
 
-
+              
                <form action="event/{{$event->id}}" method="post" class="d-inline">
                                 {{ csrf_field() }}
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">Etkinliği Sil</button>
                             </form>
+                            
+
+
+            <div class="card-body">
+             <h5>Katılımcılar</h5>
+             </div>
+        @foreach($katilimcilar as $katilimci)
+                         <div class="card-header" id="activityKatilimci">
+                         <div class="d-flex justify-content-between align-items-center">
+                         <div class="d-flex justify-content-between align-items-center">
+                         <div class="mr-2"><a href="/profile/{{ $katilimci->getKatilimci->id }}">
+        @if($katilimci->getKatilimci->profile_photo_path != NULL)
+        <img class="h-10 w-10  rounded-full"
+          src="http://localhost:8000/storage/{{ $katilimci->getKatilimci->profile_photo_path}}" /></td>
+        @else
+        <img class="h-10 w-10 rounded-full object-cover" src="http://localhost:8000/storage/profile-photos/pp.jpg" />
+        <br>
+        @endif
+        </a>
+      </div>
+
+      
+
+      <div class="ml-2">
+      <a href="/profile/{{ $katilimci->getKatilimci->id }}"><div class="h5 m-0">{{$katilimci->getKatilimci->name}}</div></a>
+      </div>
+
+    </div>
+    <i class="fa fa-thumbs-o-up " aria-hidden="true" style="align:right"></i>
+  </div>
+
+</div>
+<br>
+@endforeach
 
 
 

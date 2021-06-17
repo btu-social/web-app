@@ -10,7 +10,9 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Post;
+use App\Models\Place;
 use App\Models\PostLike;
+use App\Models\Profile;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
@@ -69,16 +71,32 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
-    public function posts() {
-  
+    public function posts(){
+
         return $this->hasMany(Post::class);
-     
+
+    }
+    public function getPost()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
+
+    
+    
+
+
+   
+    public function places(){
+
+        return $this->hasMany(Place::class);
+
     }
 
     public function profile()
-{
-return $this->hasOne('Profile');
-}
+    {
+
+        return $this->hasOne('Profile');
+    }
 
     public function likes(): HasMany
 {

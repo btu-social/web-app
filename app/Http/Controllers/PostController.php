@@ -47,6 +47,8 @@ class PostController extends Controller
         $post->type = $request->type;
         $post->title = $request->title;
         $post->posted_by = $request->user()->id;
+        $post->user_id = $request->user()->id;
+        
 
        
         
@@ -71,7 +73,9 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'body' => 'required',
+            'file' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'type' => 'required',
+            'slug' => \Str::slug($request->title)
             ]);
 
             if($request->hasFile('file')){
@@ -84,7 +88,8 @@ class PostController extends Controller
         $post->file = $path;
         $post->title = $request->title;
         $post->type = $request->type;
-        $post->posted_by = $request->user()->id;
+        
+
         $post->published_at = $request->published_at;
 
         $post->save();

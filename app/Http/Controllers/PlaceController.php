@@ -47,6 +47,7 @@ class PlaceController extends Controller
         $place->type = $request->type;
         $place->title = $request->title;
         $place->posted_by = $request->user()->id;
+        $place->user_id = $request->user()->id;
 
        
         

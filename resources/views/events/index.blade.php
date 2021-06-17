@@ -12,7 +12,7 @@
 </svg>Etkinliği Göster</a>
             <p>Etkinlik Adresi: {{ $event->address }}</p></a>
             <p>Etkinlik Adı: {{ $event->title }}</p>
-            <p>Etkinlik Adresi: {{ $event->address }}</p>
+            
 
             
             <p>Başlangıç Zamanı: {{date('Y-m-d', strtotime($event->start_date))}}</p>
